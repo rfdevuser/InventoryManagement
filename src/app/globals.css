@@ -9,8 +9,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff; /* Default background for dark mode */
+    --foreground: #171717; /* Default text color for dark mode */
   }
 }
 
@@ -18,4 +18,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* This rule ensures that when no specific color is given for bg or text, the default is applied */
+body:not([style*="background"]):not([style*="color"]) {
+  color: #171717; /* Default text color */
+  background: #ffffff; /* Default background */
 }
