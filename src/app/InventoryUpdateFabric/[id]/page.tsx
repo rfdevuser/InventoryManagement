@@ -71,15 +71,23 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   }, [dataFabricDetails]);
 
   // Set updated fabric details and calculate last updated length and width
-  useEffect(() => {
-    if (dataUpdatedFabricDetails) {
-      setUpdatedFabricDetails(dataUpdatedFabricDetails.updatedFabricInquery);
-      const lastItem = dataUpdatedFabricDetails.updatedFabricInquery[dataUpdatedFabricDetails.updatedFabricInquery.length - 1];
-      setLastUpdatedLength(lastItem?.remainingLength);
-      setLastUpdatedWidth(lastItem?.remainingWidth);
+ // Set updated fabric details and calculate last updated length and width
+useEffect(() => {
+  if (dataUpdatedFabricDetails) {
+    setUpdatedFabricDetails(dataUpdatedFabricDetails.updatedFabricInquery);
+    const lastItem = dataUpdatedFabricDetails.updatedFabricInquery[dataUpdatedFabricDetails.updatedFabricInquery.length - 1];
+    if (lastItem) {
+      setLastUpdatedLength(lastItem.remainingLength);
+      setLastUpdatedWidth(lastItem.remainingWidth);
     }
-  }, [dataUpdatedFabricDetails]);
+  } else if (fabricDetails) {
+    // If dataUpdatedFabricDetails is not available, use the initial fabricDetails' length and width
+    setLastUpdatedLength(fabricDetails.length.toString()); // Assuming length is a number, convert it to string
+    setLastUpdatedWidth(fabricDetails.width.toString()); // Assuming width is a number, convert it to string
+  }
+}, [dataUpdatedFabricDetails, fabricDetails]);
 
+console.log(lastUpdatedLength)
   // Function to handle the update
 // Function to handle the update
 // const handleUpdate = async () => {
