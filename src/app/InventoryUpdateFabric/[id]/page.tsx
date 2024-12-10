@@ -45,7 +45,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
 
   // State for user inputs
   const [usedLength, setUsedLength] = useState<number | string>('');
-  const [usedWidth, setUsedWidth] = useState<number | string>('');
+  const [usedWidth, setUsedWidth] = useState<number | string>('0');
   const [takingBy, setTakingBy] = useState<string>('');
   const [usedFor, setUsedFor] = useState<string>('');
   const [isUpdating, setIsUpdating] = useState(false);
@@ -201,7 +201,7 @@ const handleUpdate = async () => {
             <p className="text-gray-700"><strong>Date of Purchase:</strong> {fabricDetails.dateOfPurchase}</p>
             <p className="text-gray-700"><strong>Fabric Type:</strong> {fabricDetails.fabricType}</p>
             <p className="text-gray-700"><strong>Length (Purchased):</strong> {fabricDetails.length} meters</p>
-            <p className="text-gray-700"><strong>Width (Purchased):</strong> {fabricDetails.width} meters</p>
+            <p className="text-gray-700"><strong>Width (Purchased):</strong> {fabricDetails.width} inches</p>
           </div>
         </div>
       ) : (
@@ -222,7 +222,7 @@ const handleUpdate = async () => {
                 className="w-full border rounded p-2"
               />
             </div>
-            <div>
+            {/* <div>
               <label className="block mb-2">Used Width (m)</label>
               <input
                 type="number"
@@ -230,7 +230,7 @@ const handleUpdate = async () => {
                 onChange={(e) => setUsedWidth(Number(e.target.value))}
                 className="w-full border rounded p-2"
               />
-            </div>
+            </div> */}
             <div>
               <label className="block mb-2">Taken By</label>
               <input
@@ -269,7 +269,7 @@ const handleUpdate = async () => {
             Last Updated Remaining Length: <span className="font-bold text-green-600">{lastUpdatedLength} meters</span>
           </p>
           <p className="text-lg sm:text-xl font-bold text-gray-800">
-            Last Updated Remaining Width: <span className="font-bold text-green-600">{lastUpdatedWidth} meters</span>
+            Last Updated Remaining Width: <span className="font-bold text-green-600">{lastUpdatedWidth} inches</span>
           </p>
         </div>
       )}
@@ -284,14 +284,15 @@ const handleUpdate = async () => {
                 <tr className="bg-gray-200 text-gray-700">
                   <th className="px-2 sm:px-4 py-2 border">Fabric Code</th>
                   <th className="px-2 sm:px-4 py-2 border">Purchased Length (m)</th>
-                  <th className="px-2 sm:px-4 py-2 border">Purchased Width (m)</th>
+                  <th className="px-2 sm:px-4 py-2 border">Purchased Width (i)</th>
                   <th className="px-2 sm:px-4 py-2 border">Remaining Length (m)</th>
-                  <th className="px-2 sm:px-4 py-2 border">Remaining Width (m)</th>
+                  <th className="px-2 sm:px-4 py-2 border">Remaining Width (i)</th>
                   <th className="px-2 sm:px-4 py-2 border">Taking By</th>
-                  <th className="px-2 sm:px-4 py-2 border">Updated At</th>
+                 
                   <th className="px-2 sm:px-4 py-2 border">Used For</th>
-                  <th className="px-2 sm:px-4 py-2 border">Used Width (m)</th>
+                  {/* <th className="px-2 sm:px-4 py-2 border">Used Width (i)</th> */}
                   <th className="px-2 sm:px-4 py-2 border">Used Length (m)</th>
+                  <th className="px-2 sm:px-4 py-2 border">Updated At</th>
                 </tr>
               </thead>
               <tbody>
@@ -299,14 +300,15 @@ const handleUpdate = async () => {
                   <tr key={index} className="hover:bg-gray-50">
                     <td className="px-2 sm:px-4 py-2 border">{item.fabricCode}</td>
                     <td className="px-2 sm:px-4 py-2 border">{item.purchased_length} m</td>
-                    <td className="px-2 sm:px-4 py-2 border">{item.purchased_width} m</td>
+                    <td className="px-2 sm:px-4 py-2 border">{item.purchased_width} i</td>
                     <td className="px-2 sm:px-4 py-2 border">{item.remainingLength} m</td>
-                    <td className="px-2 sm:px-4 py-2 border">{item.remainingWidth} m</td>
+                    <td className="px-2 sm:px-4 py-2 border">{item.remainingWidth} i</td>
                     <td className="px-2 sm:px-4 py-2 border">{item.takingBy}</td>
-                    <td className="px-2 sm:px-4 py-2 border">{item.updated_at}</td>
+                    
                     <td className="px-2 sm:px-4 py-2 border">{item.usedFor}</td>
-                    <td className="px-2 sm:px-4 py-2 border">{item.usedWidth} m</td>
+                    {/* <td className="px-2 sm:px-4 py-2 border">{item.usedWidth} i</td> */}
                     <td className="px-2 sm:px-4 py-2 border">{item.usedLength} m</td>
+                    <td className="px-2 sm:px-4 py-2 border">{item.updated_at}</td>
                   </tr>
                 ))}
               </tbody>

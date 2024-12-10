@@ -146,7 +146,7 @@ export default function Form() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700" htmlFor="width">Width</label>
+              <label className="block text-sm font-medium text-gray-700" htmlFor="width">Width (in inch)</label>
               <input
                 type="number"
                 id="width"
